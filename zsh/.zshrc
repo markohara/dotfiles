@@ -2,8 +2,15 @@
 export PATH=/opt/homebrew/bin:$PATH
 export PATH=/opt/homebrew/opt/ruby/bin:/opt/homebrew/lib/ruby/gems/3.0.0/bin:$PATH
 
+# oh my zsh
+export ZSH=$HOME/.oh-my-zsh
+source $ZSH/oh-my-zsh.sh
+
 # Themeing
 ZSH_THEME="powerlevel10k/powerlevel10k"
+
+# Plugin Config
+plugins=(git)
 
 # ZSH History Config
 HISTFILE=$HOME/.zhistory
