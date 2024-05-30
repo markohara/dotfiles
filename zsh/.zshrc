@@ -59,3 +59,6 @@ cyan="#2CF9ED"
 export FZF_DEFAULT_OPTS="--color=fg:${fg},bg:${bg},hl:${purple},fg+:${fg},bg+:${bg_highlight},hl+:${purple},info:${blue},prompt:${cyan},pointer:${cyan},marker:${cyan},spinner:${cyan},header:${cyan}"
 
 source $HOME/Developer/dotfiles/utils/fzf-git/fzf-git.sh
+
+# fuck Config
+eval $(thefuck --alias)
