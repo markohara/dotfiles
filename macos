@@ -1,13 +1,12 @@
 #!/bin/bash
 
 if [[ -z $STOW_FOLDERS ]]; then
-    # STOW_FOLDERS="alacritty,bin,git,nvim,tmux,yabai,zsh"
-    STOW_FOLDERS="alacritty,zsh"
+    # STOW_FOLDERS="alacritty,bat,bin,git,nvim,tmux,yabai,zsh"
+    STOW_FOLDERS="alacritty,bat,zsh"
 fi
 
 if [[ -z $DOTFILES ]]; then
     DOTFILES=$HOME/Developer/dotfiles
-    export $DOTFILES
 fi
 
 STOW_FOLDERS=$STOW_FOLDERS DOTFILES=$DOTFILES $DOTFILES/install
