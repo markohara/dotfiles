@@ -5,8 +5,15 @@ if [[ -z $STOW_FOLDERS ]]; then
     STOW_FOLDERS="alacritty,bat,git,p10k,skhd,yabai,zsh"
 fi
 
+if [[ -z $BACKUP_FILES ]]; then
+    # STOW_FOLDERS="alacritty,bat,bin,git,nvim,p10k,skhd,tmux,yabai,zsh"
+    BACKUP_FILES=".zshrc,.gitconfig"
+fi
+
 if [[ -z $DOTFILES ]]; then
     DOTFILES=$HOME/Developer/dotfiles
 fi
+
+BACKUP_FILES=$BACKUP_FILES DOTFILES=$DOTFILES $DOTFILES/backup
 
 STOW_FOLDERS=$STOW_FOLDERS DOTFILES=$DOTFILES $DOTFILES/install

@@ -1,0 +1,14 @@
+#!/bin/bash
+
+set -e
+
+BACKUP_DIR="$HOME/.backups/dotfiles/$(date +%F)"
+mkdir -p "$BACKUP_DIR"
+
+pushd "$DOTFILES"
+for file in $(echo "$BACKUP_FILES" | sed "s/,/ /g"); do
+    echo "backing up $file"
+    cp -f "$HOME/$file" "$BACKUP_DIR"
+done
+echo "Backups have been made and stored in ${BACKUP_DIR}"
+popd
