@@ -1,8 +1,8 @@
 #!/bin/bash
 
 if [[ -z $STOW_FOLDERS ]]; then
-    # STOW_FOLDERS="alacritty,bat,bin,git,nvim,tmux,yabai,zsh"
-    STOW_FOLDERS="alacritty,bat,git,yabai,zsh"
+    # STOW_FOLDERS="alacritty,bat,bin,git,nvim,p10k,skhd,tmux,yabai,zsh"
+    STOW_FOLDERS="alacritty,bat,git,p10k,skhd,yabai,zsh"
 fi
 
 if [[ -z $DOTFILES ]]; then
