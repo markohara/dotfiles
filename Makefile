@@ -11,9 +11,9 @@ help: ## Display this help message
 .PHONY: init.local.gitconfig
 init.local.gitconfig: ## Add/Overwrite your .gitconfig.local with the template
 	@cat ./templates/.gitconfig.local > ~/.gitconfig.local
-	echo "Added local .gitconfig to ~/.gitconfig.local"
+	@echo "Added local .gitconfig to ~/.gitconfig.local"
 
 .PHONY: init.local.localrc
 init.local.localrc: ## Create the .localrc if needed
 	@touch ~/.localrc
-	echo "Created ~/.localrc"
+	@echo "Created ~/.localrc"
