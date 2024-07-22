@@ -95,3 +95,7 @@ eval $(thefuck --alias)
 
 # Source .localrc, ignoring file not found
 [[ -f ~/.localrc ]] && source ~/.localrc || true
+
+# Aliases
+alias cd="z"
+
