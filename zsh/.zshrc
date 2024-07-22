@@ -99,3 +99,4 @@ eval $(thefuck --alias)
 # Aliases
 alias cd="z"
 
+source ~/.zshrc
