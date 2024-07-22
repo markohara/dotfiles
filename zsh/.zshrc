@@ -30,10 +30,6 @@ setopt hist_expire_dups_first
 setopt hist_ignore_dups
 setopt hist_verify
 
-# Aliases
-alias ls="eza  --color=always --icons=always"
-alias cd="z"
-
 # Zoxide config
 eval "$(zoxide init zsh)"
 
@@ -97,6 +93,7 @@ eval $(thefuck --alias)
 [[ -f ~/.localrc ]] && source ~/.localrc || true
 
 # Aliases
+alias ls="eza  --color=always --icons=always"
 alias cd="z"
 
 source ~/.zshrc
