@@ -1,0 +1,26 @@
+#!/bin/bash
+set -e
+
+BACKUP_DIR="$HOME/.backups/dotfiles/$(date +%F)"
+mkdir -p "$BACKUP_DIR"
+
+FILES=$(cat "$BACKUP_FILES_FILE")
+
+pushd "$CONFIG" >/dev/null
+
+for file in $FILES; do
+    source_file="$HOME/$file"
+    if [[ -e "$source_file" && ( ! -L "$source_file" || $(readlink -f "$source_file") != "$CONFIG"* ) ]]; then
+        echo "Backing up: $file"
+        cp -fL "$source_file" "$BACKUP_DIR/"
+    fi
+done
+
+if [ -z "$(find "$BACKUP_DIR" -mindepth 1 -print -quit)" ]; then
+    echo "Nothing to back up"
+    rmdir "$BACKUP_DIR"
+else
+    echo "Backups have been stored in ${BACKUP_DIR}"
+fi
+
+popd >/dev/null

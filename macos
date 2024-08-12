@@ -1,19 +1,14 @@
 #!/bin/bash
+DOTFILES=$(PWD)
+CONFIG="$(PWD)/config"
+UTILS="$(PWD)/utils"
+MAC_CONFIG="$(PWD)/mac"
 
-if [[ -z $STOW_FOLDERS ]]; then
-    # STOW_FOLDERS="alacritty,bat,bin,git,nvim,p10k,skhd,tmux,yabai,zsh"
-    STOW_FOLDERS="alacritty,bat,git,p10k,skhd,yabai,zsh"
-fi
+# STOW_FOLDERS="alacritty,bat,bin,git,nvim,p10k,skhd,tmux,yabai,zsh"
+STOW_FOLDERS_FILE="$MAC_CONFIG/.macos_dotfiles"
+BACKUP_FILES_FILE="$STOW_FOLDERS_FILE"
+DOTFILE_HISTORY="$MAC_CONFIG/.macos_dotfile_history"
 
-if [[ -z $BACKUP_FILES ]]; then
-    # STOW_FOLDERS="alacritty,bat,bin,git,nvim,p10k,skhd,tmux,yabai,zsh"
-    BACKUP_FILES=".zshrc,.gitconfig"
-fi
-
-if [[ -z $DOTFILES ]]; then
-    DOTFILES=$HOME/Developer/dotfiles
-fi
-
-BACKUP_FILES=$BACKUP_FILES DOTFILES=$DOTFILES $DOTFILES/backup
-
-STOW_FOLDERS=$STOW_FOLDERS DOTFILES=$DOTFILES $DOTFILES/install
+export DOTFILES CONFIG UTILS STOW_FOLDERS_FILE BACKUP_FILES_FILE DOTFILES DOTFILE_HISTORY
+$UTILS/backup
+$UTILS/install

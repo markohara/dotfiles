@@ -1,0 +1,27 @@
+#!/bin/bash
+set -e
+
+if [[ -f "$DOTFILE_HISTORY" ]]; then
+    PREV_STOW_FOLDERS=$(cat "$DOTFILE_HISTORY")
+else
+    PREV_STOW_FOLDERS=""
+fi
+
+CURRENT_FOLDERS=$(cat "$STOW_FOLDERS_FILE")
+
+pushd "$CONFIG" >/dev/null
+# Unstow folders that are no longer in STOW_FOLDERS
+for folder in $PREV_STOW_FOLDERS; do
+    stow -D $folder -v
+done
+
+# Stow current folders
+for folder in $CURRENT_FOLDERS; do
+    echo "stow $folder"
+    stow -t ~ $folder
+done
+
+# Update the dotfile history without duplicates
+sort -u "$STOW_FOLDERS_FILE" > "$DOTFILE_HISTORY"
+
+popd >/dev/null

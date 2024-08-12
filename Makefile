@@ -17,3 +17,8 @@ init.local.gitconfig: ## Add/Overwrite your .gitconfig.local with the template
 init.local.localrc: ## Create the .localrc if needed
 	@touch ~/.localrc
 	@echo "Created ~/.localrc"
+
+.PHONY: mac.legacy-migrate
+mac.legacy-migrate: ## Migrate to newer version where configs have their own directory
+	@sh $(PWD)/utils/legacy-migrate.sh
+	@sh $(PWD)/macos
