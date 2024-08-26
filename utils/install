@@ -22,6 +22,5 @@ for folder in $CURRENT_FOLDERS; do
 done
 
 # Update the dotfile history without duplicates
-sort -u "$STOW_FOLDERS_FILE" > "$DOTFILE_HISTORY"
-
+awk '{ print }' "$DOTFILE_HISTORY" "$STOW_FOLDERS_FILE" | sort -u > temp_file && mv temp_file "$DOTFILE_HISTORY"
 popd >/dev/null
