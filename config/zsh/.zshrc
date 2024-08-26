@@ -133,3 +133,7 @@ alias ls="eza  --color=always --icons=always"
 alias cd="z"
 
 export PATH=$HOME/.local/bin:$PATH
+
+# mkdir -p ~/.config/sketchybar/plugins
+# cp $(brew --prefix)/share/sketchybar/examples/sketchybarrc ~/.config/sketchybar/sketchybarrc
+# cp -r $(brew --prefix)/share/sketchybar/examples/plugins/ ~/.config/sketchybar/plugins/
