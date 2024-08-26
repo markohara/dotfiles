@@ -95,3 +95,5 @@ eval $(thefuck --alias)
 # Aliases
 alias ls="eza  --color=always --icons=always"
 alias cd="z"
+
+export PATH=$HOME/.local/bin:$PATH
