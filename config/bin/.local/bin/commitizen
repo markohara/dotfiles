@@ -1,6 +1,18 @@
 #!/bin/bash
 set -e
 
+add_to_history() {
+    local commit_command="$1"
+
+    if [ -n "$ZSH_NAME" ]; then
+        print -s $commit_command
+        fc -R
+    elif [ -n "$BASH_VERSION" ]; then
+        history -s $commit_command
+        history -a
+    fi
+}
+
 scope_types='none '
 commit_types='fix feat docs style refactor test chore revert'
 
@@ -35,12 +47,10 @@ message=$(gum input --prompt "$prefix " --placeholder "commit message")
 printf "# Commit Message" | gum format
 printf "$prefix$message \n" | gum format
 
-# gum confirm "" && git commit -m  "$prefix$message" || exit 1
-
 if gum confirm ""; then
-    commit_commande="git commit -m \"$prefix$message\""
-    $commit_command
-    history -s "$commit_command"
+    commit_command="git commit -m \"$prefix$message\""
+    eval $commit_command
+    add_to_history $commit_command
 else
     exit 1
 fi
