@@ -1,0 +1,38 @@
+#!/bin/bash
+set -e
+
+scope_types='none '
+commit_types='fix feat docs style refactor test chore revert'
+
+# Check if in a Git repository
+git_root=$(git rev-parse --show-toplevel 2>/dev/null)
+
+if [ -z "$git_root" ]; then
+    echo "Not in a Git repository" >&2
+    exit 1
+fi
+
+yaml_file="$git_root/.got-conventional-commits.yaml"
+
+if [ -f "$yaml_file" ]; then
+    commit_types=$(yq eval '(.convention.commitTypes[])' "$yaml_file")
+    scope_types="$scope_types$(yq eval '(.convention.commitScopes[])' "$yaml_file")"
+fi
+
+type=$(gum choose --header "Commit Type" $commit_types)
+
+scope=""
+if [ "$scope_types" != "none " ]; then
+    scope="($(gum choose --header "Scope" $scope_types))"
+    if [ "$scope" == "(none)" ]; then scope=""; fi
+fi
+
+prefix="$type$scope: "
+
+# Get commit message
+message=$(gum input --prompt "$prefix " --placeholder "commit message")
+# echo "$prefix $message"
+printf "# Commit Message" | gum format
+printf "$prefix$message \n" | gum format
+
+gum confirm "" && git commit -m  "$prefix$message" || exit 1
