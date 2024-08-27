@@ -1,6 +1,8 @@
 #!/bin/bash
 set -e
 
+export PATH=/opt/homebrew/bin:$PATH
+
 PREV_STOW_FOLDERS=""
 if [[ -f "$DOTFILE_HISTORY" ]]; then
     PREV_STOW_FOLDERS=$(cat "$DOTFILE_HISTORY")
