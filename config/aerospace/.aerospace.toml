@@ -153,6 +153,7 @@ j = 'resize height +50'
 k = 'resize height -50'
 l = 'resize width +50'
 b = 'balance-sizes'
+s = ['resize width -800', 'mode main']
 
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#resize
