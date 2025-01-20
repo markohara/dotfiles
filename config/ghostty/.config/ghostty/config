@@ -1,2 +1,7 @@
 theme = "ayu"
 font-size = 20
+
+keybind = global:alt+t=toggle_quick_terminal
+quick-terminal-position = center
+quick-terminal-screen = mouse
+quick-terminal-animation-duration = 0.05
