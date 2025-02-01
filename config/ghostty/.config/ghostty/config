@@ -1,6 +1,8 @@
 theme = "ayu"
 font-size = 20
 
+macos-option-as-alt = false
+
 keybind = global:alt+t=toggle_quick_terminal
 quick-terminal-position = center
 quick-terminal-screen = mouse
