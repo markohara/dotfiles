@@ -41,6 +41,8 @@ function obj:handleShiftTap()
         local app = hs.application.frontmostApplication()
         if app:name() == "Xcode" then
             hs.eventtap.keyStroke({"cmd", "shift"}, "O")
+        elseif app:name() == "Cursor" then 
+            hs.eventtap.keyStroke({"cmd"}, "p")
         end
         
         self.shiftTapCount = 0
