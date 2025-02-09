@@ -1,6 +1,6 @@
 hs = hs
 
-hs.loadSpoon("OpenQuickly")
+hs.loadSpoon("ShiftIt")
 
 -- Bind end key to output #
 hs.hotkey.bind({}, "end", function()
@@ -12,8 +12,11 @@ hs.hotkey.bind({'shift'}, 'delete', function()
     hs.eventtap.keyStroke({}, 'forwarddelete')
 end)
 
-local openQuickly = spoon.OpenQuickly
+local shiftIt = spoon.ShiftIt
 
-openQuickly:add("Xcode", {"cmd", "shift"}, "O")
-openQuickly:add("Cursor", {"cmd"}, "p")
-openQuickly:start()
+shiftIt:register(
+    {
+        Xcode = {modifiers = {"cmd", "shift"}, key = "o"},
+        Cursor = {modifiers = {"cmd"}, key = "p"}
+    }
+)
