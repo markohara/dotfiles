@@ -10,6 +10,8 @@ obj.lastShiftTime = 0
 obj.shiftTapCount = 0
 obj.shiftTimeout = 0.3
 
+obj.appMappings = {}
+
 function obj:init()
     self.shiftTap = hs.eventtap.new({hs.eventtap.event.types.flagsChanged}, function(event)
         local flags = event:getFlags()
@@ -26,6 +28,10 @@ function obj:start()
     return self
 end
 
+function obj:add(appName, modifiers, key)
+    self.appMappings[appName] = {modifiers = modifiers, key = key}
+end
+
 function obj:handleShiftTap()
     local currentTime = os.time()
     
@@ -39,10 +45,11 @@ function obj:handleShiftTap()
     
     if self.shiftTapCount == 2 then
         local app = hs.application.frontmostApplication()
-        if app:name() == "Xcode" then
-            hs.eventtap.keyStroke({"cmd", "shift"}, "O")
-        elseif app:name() == "Cursor" then 
-            hs.eventtap.keyStroke({"cmd"}, "p")
+        local appName = app:name()
+        
+        if self.appMappings[appName] then
+            local mapping = self.appMappings[appName]
+            hs.eventtap.keyStroke(mapping.modifiers, mapping.key)
         end
         
         self.shiftTapCount = 0

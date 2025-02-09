@@ -12,4 +12,8 @@ hs.hotkey.bind({'shift'}, 'delete', function()
     hs.eventtap.keyStroke({}, 'forwarddelete')
 end)
 
-spoon.OpenQuickly:start()
+local openQuickly = spoon.OpenQuickly
+
+openQuickly:add("Xcode", {"cmd", "shift"}, "O")
+openQuickly:add("Cursor", {"cmd"}, "p")
+openQuickly:start()
