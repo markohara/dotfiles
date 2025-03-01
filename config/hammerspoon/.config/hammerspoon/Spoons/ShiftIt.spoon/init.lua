@@ -1,18 +1,6 @@
 --- === ShiftIt ===
 ---
 --- A spoon that enables performing a quick action for an application using double-tap shift
-
-local obj = {}
-obj.__index = obj
-
-obj.shiftTap = nil
-obj.keyTap = nil
-obj.lastShiftTime = 0
-obj.shiftTapCount = 0
-obj.shiftTimeout = 0.3
-
-obj.appMappings = {}
-
 -- Function to create a fixed-size array
 function createFixedSizeArray(maxSize)
     local array = {}
@@ -29,7 +17,17 @@ function createFixedSizeArray(maxSize)
     return array
 end
 
--- Initialize keyStrokes as a fixed-size array
+local obj = {}
+obj.__index = obj
+
+obj.shiftTap = nil
+obj.keyTap = nil
+obj.lastShiftTime = 0
+obj.shiftTapCount = 0
+obj.shiftTimeout = 0.3
+
+obj.appMappings = {}
+
 obj.keyStrokes = createFixedSizeArray(10)
 
 function obj:init()

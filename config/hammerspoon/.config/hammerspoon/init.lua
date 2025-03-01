@@ -12,10 +12,10 @@ binder:register(
 )
 
 
-local shiftIt = spoon.ShiftIt
-shiftIt:register(
-    {
-        Xcode = {modifiers = {"cmd", "shift"}, key = "o"},
-        Cursor = {modifiers = {"cmd"}, key = "p"}
-    }
-)
+-- local shiftIt = spoon.ShiftIt
+-- shiftIt:register(
+--     {
+--         Xcode = {modifiers = {"cmd", "shift"}, key = "o"},
+--         Cursor = {modifiers = {"cmd"}, key = "p"}
+--     }
+-- )
