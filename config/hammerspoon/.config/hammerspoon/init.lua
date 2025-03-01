@@ -18,4 +18,4 @@ binder:register(
 --         Xcode = {modifiers = {"cmd", "shift"}, key = "o"},
 --         Cursor = {modifiers = {"cmd"}, key = "p"}
 --     }
--- )
+-- )j
