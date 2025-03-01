@@ -1,4 +1,5 @@
-theme = "ayu"
+#theme = "ayu"
+theme = "Solarized Dark Higher Contrast"
 font-size = 20
 
 macos-option-as-alt = false
