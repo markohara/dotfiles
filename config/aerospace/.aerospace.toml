@@ -177,3 +177,31 @@ alt-shift-j = ['join-with down', 'mode main']
 alt-shift-k = ['join-with up', 'mode main']
 alt-shift-l = ['join-with right', 'mode main']
 
+# Auto assigning to space
+[[on-window-detected]]
+    if.app-id = 'company.thebrowser.Browser'
+    run = 'move-node-to-workspace 1'
+
+[[on-window-detected]]
+    if.app-name-regex-substring = 'ghostty'
+    run = 'move-node-to-workspace 4'
+
+[[on-window-detected]]
+    if.app-name-regex-substring = 'xcode'
+    run = 'move-node-to-workspace 5'
+
+[[on-window-detected]]
+    if.app-name-regex-substring = 'slack'
+    run = 'move-node-to-workspace 7'
+
+[[on-window-detected]]
+    if.app-name-regex-substring = 'whatsapp'
+    run = 'move-node-to-workspace 7'
+
+[[on-window-detected]]
+    if.app-name-regex-substring = 'microsoft teams'
+    run = 'move-node-to-workspace 8'
+
+[[on-window-detected]]
+    if.app-name-regex-substring = 'zoom'
+    run = 'move-node-to-workspace 8'
