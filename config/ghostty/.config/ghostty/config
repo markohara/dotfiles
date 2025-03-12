@@ -1,5 +1,7 @@
 #theme = "ayu"
-theme = "Solarized Dark Higher Contrast"
+#theme = "Solarized Dark Higher Contrast"
+theme = "catppuccin-mocha"
+
 font-size = 20
 
 macos-option-as-alt = false
@@ -8,3 +10,6 @@ keybind = global:alt+t=toggle_quick_terminal
 quick-terminal-position = center
 quick-terminal-screen = mouse
 quick-terminal-animation-duration = 0.05
+
+# Hacky solution to let me use command + k to clear in tmux
+keybind = command+k=text:clear \n

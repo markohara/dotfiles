@@ -14,7 +14,8 @@ binder:register(
 
 local shiftIt = spoon.ShiftIt
 shiftIt:register(
-    "pagedown",
+    "f9",
+    true,
     {
         Xcode = {modifiers = {"cmd", "shift"}, key = "o"},
         Cursor = {modifiers = {"cmd"}, key = "p"}

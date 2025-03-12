@@ -27,20 +27,21 @@ end
 local obj = {}
 obj.__index = obj
 
-obj.shiftTap = nil
+obj.modTap = nil
 obj.keyTap = nil
 
 obj.lastShiftTime = 0
-obj.shiftTapCount = 0
-obj.shiftTimeout = 0.3
+obj.hotkeyTapCount = 0
+obj.timeout = 0.3
 
 obj.hotkey = nil
+obj.swallows = false
 obj.appMappings = {}
 
 obj.keyStrokes = createFixedSizeArray(10)
 
 function obj:init()
-    self.shiftTap = hs.eventtap.new({hs.eventtap.event.types.flagsChanged}, function(event)
+    self.modTap = hs.eventtap.new({hs.eventtap.event.types.flagsChanged}, function(event)
         if not self:isAppMapped() then return false end
         local flags = event:getFlags()
 
@@ -50,17 +51,18 @@ function obj:init()
             end
         end
 
-        self:handleShiftTap()
+        self:handleKeyPressedEvent()
         return false
     end)
 
     self.keyTap = hs.eventtap.new({hs.eventtap.event.types.keyDown}, function(event)
         if not self:isAppMapped() then return false end
+        local key = hs.keycodes.map[event:getKeyCode()]
 
-        self.keyStrokes:add(hs.keycodes.map[event:getKeyCode()])
-        self:handleShiftTap()
+        self.keyStrokes:add(key)
+        self:handleKeyPressedEvent()
 
-        return false
+        return self.swallows and key == self.hotkey or false
     end)
     return self
 end
@@ -69,22 +71,24 @@ function obj:isAppMapped()
     return self.appMappings[hs.application.frontmostApplication():name()] ~= nil
 end
 
-function obj:register(hotkey, mappings)
+function obj:register(hotkey, swallows, mappings)
     self.hotkey = hotkey
+    self.swallows = swallows
+
     for appName, config in pairs(mappings) do
         self.appMappings[appName] = {modifiers = config.modifiers, key = config.key}
     end
 
-    self.shiftTap:start()
+    self.modTap:start()
     self.keyTap:start()
 end
 
-function obj:handleShiftTap()
+function obj:handleKeyPressedEvent()
     local currentTime = os.time()
-    self.shiftTapCount = (currentTime - self.lastShiftTime > self.shiftTimeout) and 1 or self.shiftTapCount + 1
+    self.hotkeyTapCount = (currentTime - self.lastShiftTime > self.timeout) and 1 or self.hotkeyTapCount + 1
     self.lastShiftTime = currentTime
 
-    if self.shiftTapCount == 1 then return end
+    if self.hotkeyTapCount == 1 then return end
     
     local n = #self.keyStrokes
     if n < 2 then return end
@@ -95,7 +99,7 @@ function obj:handleShiftTap()
         hs.eventtap.keyStroke(mapping.modifiers, mapping.key)
     end
     
-    self.shiftTapCount = 0
+    self.hotkeyTapCount = 0
     self.keyStrokes:flush()
 end
 
