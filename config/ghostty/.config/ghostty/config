@@ -13,3 +13,6 @@ quick-terminal-animation-duration = 0.05
 
 # Hacky solution to let me use command + k to clear in tmux
 #keybind = command+k=text:clear \n
+
+background-opacity = 0.9
+# background-blur = true
