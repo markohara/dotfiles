@@ -13,8 +13,13 @@ init.local.gitconfig: ## Add/Overwrite your .gitconfig.local with the template
 	@cat ./templates/.gitconfig.local > ~/.gitconfig.local
 	@echo "Added local .gitconfig to ~/.gitconfig.local"
 
+.PHONY: init.local.zprofile
+init.local.zprofile: ## Create the ~/.zprofile.local if needed
+	@touch ~/.zprofile.local
+	@echo "Created ~/.zprofile.local"
+
 .PHONY: init.local.zshrc
-init.local.localrc: ## Create the ~/.zshrc.local if needed
+init.local.zshrc: ## Create the ~/.zshrc.local if needed
 	@touch ~/.zshrc.local
 	@echo "Created ~/.zshrc.local"
 

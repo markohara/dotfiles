@@ -3,7 +3,6 @@ set -e
 
 # hacky "fix"
 mkdir  -p ~/.local/bin
-mkdir -p ~/Developer/{personal,work}
 
 DOTFILES="$(dirname "$(realpath "$0")")"
 CONFIG="$DOTFILES/config"

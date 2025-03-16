@@ -1,9 +1,6 @@
 #!/bin/bash
 # Originally stolen from here https://github.com/ThePrimeagen/.dotfiles/blob/master/bin/.local/scripts/tmux-sessionizer
 
-SESSIONIZER_DIRS="$HOME/Developer/work:$HOME/Developer/personal"
-SESSIONIZER_PROJECTS="$HOME/config:$HOME/dotfiles"
-
 if [[ $# -eq 1 ]]; then
     selected=$1
 else
