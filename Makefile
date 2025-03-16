@@ -13,10 +13,10 @@ init.local.gitconfig: ## Add/Overwrite your .gitconfig.local with the template
 	@cat ./templates/.gitconfig.local > ~/.gitconfig.local
 	@echo "Added local .gitconfig to ~/.gitconfig.local"
 
-.PHONY: init.local.localrc
-init.local.localrc: ## Create the .localrc if needed
-	@touch ~/.localrc
-	@echo "Created ~/.localrc"
+.PHONY: init.local.zshrc
+init.local.localrc: ## Create the ~/.zshrc.local if needed
+	@touch ~/.zshrc.local
+	@echo "Created ~/.zshrc.local"
 
 .PHONY: mac.legacy-migrate
 mac.legacy-migrate: ## Migrate to newer version where configs have their own directory

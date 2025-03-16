@@ -1,1 +1,3 @@
 setopt autocd
+setopt GLOB_DOTS
+setopt SHARE_HISTORY
