@@ -1,0 +1,6 @@
+# Neovim
+.nvim/
+
+# Build server configuration
+buildServer.json
+

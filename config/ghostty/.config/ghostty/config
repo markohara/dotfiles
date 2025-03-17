@@ -13,6 +13,5 @@ quick-terminal-animation-duration = 0.05
 
 keybind = command+k=csi:K
 
-
 background-opacity = 0.9
 background-blur = true
