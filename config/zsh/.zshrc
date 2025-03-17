@@ -1,5 +1,6 @@
 CONFIG=$HOME/zsh
 
+source $CONFIG/functions.zsh
 source $CONFIG/prompt.zsh
 source $CONFIG/options.zsh
 source $CONFIG/zinit.zsh
