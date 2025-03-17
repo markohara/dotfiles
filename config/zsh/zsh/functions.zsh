@@ -6,3 +6,6 @@ open_sessionizer() {
     fi
 }
 
+clean_screen() {
+    zle clear-screen
+}

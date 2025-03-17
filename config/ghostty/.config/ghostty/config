@@ -11,8 +11,8 @@ quick-terminal-position = center
 quick-terminal-screen = mouse
 quick-terminal-animation-duration = 0.05
 
-# Hacky solution to let me use command + k to clear in tmux
-keybind = command+k=text:clear \n
+keybind = command+k=csi:K
+
 
 background-opacity = 0.9
 background-blur = true
