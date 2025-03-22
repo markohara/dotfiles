@@ -4,13 +4,17 @@
 if [[ $# -eq 1 ]]; then
     selected=$1
 else
-    directories=$(find $(echo $SESSIONIZER_DIRS | tr ':' ' ') -mindepth 1 -maxdepth 1 -type d)
+    # directories=$(find $(echo $SESSIONIZER_DIRS | tr ':' ' ') -mindepth 1 -maxdepth 1 -type d)
+    if [ -n "$SESSIONIZER_DIRS" ]; then
+        empty_directories=$(find $(echo $SESSIONIZER_DIRS | tr ':' ' ') -mindepth 1 -maxdepth 1 -type d)
+    else
+        empty_directories=""
+    fi
     projects=$(echo $SESSIONIZER_PROJECTS | tr ':' '\n')
     
     selected=$(
         {
-            echo "$directories"
-            echo "$projects"
+            echo "$directories" "$projects"
         } | fzf --tmux center --with-nth -1 -d '/'
     )
 fi
