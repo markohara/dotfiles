@@ -4,13 +4,12 @@
 if [[ $# -eq 1 ]]; then
     selected=$1
 else
-    directories=$(find $(echo $SESSIONIZER_DIRS | tr ':' ' ') -mindepth 1 -maxdepth 1 -type d)
-    projects=$(echo $SESSIONIZER_PROJECTS | tr ':' '\n')
-    
+    dirs_to_search=${SESSIONIZER_DIRS:+"$(echo "$SESSIONIZER_DIRS" | tr ':' ' ')"}
+
     selected=$(
         {
-            echo "$directories"
-            echo "$projects"
+            [[ -n "$dirs_to_search" ]] && find $dirs_to_search -mindepth 1 -maxdepth 1 -type d 2>/dev/null
+            [[ -n "$SESSIONIZER_PROJECTS" ]] && echo "$SESSIONIZER_PROJECTS" | tr ':' '\n'
         } | fzf --tmux center --with-nth -1 -d '/'
     )
 fi
