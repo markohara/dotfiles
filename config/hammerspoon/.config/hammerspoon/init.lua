@@ -18,6 +18,7 @@ shiftIt:register(
     true,
     {
         Xcode = {modifiers = {"cmd", "shift"}, key = "o"},
-        Cursor = {modifiers = {"cmd"}, key = "p"}
+        Cursor = {modifiers = {"cmd"}, key = "p"},
+        ["Microsoft Teams"] = {modifiers = {"cmd"}, key = "e"}
     }
 )
