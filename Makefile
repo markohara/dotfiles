@@ -13,6 +13,11 @@ init.local.gitconfig: ## Add/Overwrite your .gitconfig.local with the template
 	@cat ./templates/.gitconfig.local > ~/.gitconfig.local
 	@echo "Added local .gitconfig to ~/.gitconfig.local"
 
+.PHONY: init.local.ssh.config
+init.local.ssh.config: ## Add/Overwrite your .ssh/config.local with the template
+	@cat ./templates/.ssh.config.local > ~/.ssh/config.local
+	@echo "Added local config.local to ~/.ssh/config.local, ensure you're ssh key is correct"
+
 .PHONY: init.local.zprofile
 init.local.zprofile: ## Create the ~/.zprofile.local if needed
 	@touch ~/.zprofile.local
