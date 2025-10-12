@@ -28,10 +28,11 @@ local obj = {}
 obj.__index = obj
 
 obj.modTap = nil
+obj.keyTap = nil
 
 obj.lastShiftTime = 0
 obj.hotkeyTapCount = 0
-obj.timeout = 0.3
+obj.timeout = 0.075
 
 obj.hotkey = "shift"
 obj.appMappings = {}
@@ -50,6 +51,11 @@ function obj:init()
         self:handleKeyPressedEvent()
         return false
     end)
+
+    self.keyTap = hs.eventtap.new({hs.eventtap.event.types.keyDown}, function(event)
+        self.keyStrokes:flush()
+      return false
+    end)
     return self
 end
 
@@ -59,10 +65,11 @@ function obj:register(mappings)
     end
 
     self.modTap:start()
+    self.keyTap:start()
 end
 
 function obj:handleKeyPressedEvent()
-    local currentTime = os.time()
+    local currentTime = os.clock()
     self.hotkeyTapCount = (currentTime - self.lastShiftTime > self.timeout) and 1 or self.hotkeyTapCount + 1
     self.lastShiftTime = currentTime
 
@@ -70,7 +77,10 @@ function obj:handleKeyPressedEvent()
 
     local n = #self.keyStrokes
     if n < 2 then return end
-    if self.keyStrokes[n-1] ~= self.hotkey or self.keyStrokes[n] ~= self.hotkey then return end
+    if self.keyStrokes[n-1] ~= self.hotkey or self.keyStrokes[n] ~= self.hotkey then 
+      self.keyStrokes:flush()
+      return
+    end
 
     local mapping = self.appMappings[hs.application.frontmostApplication():name()]
     if mapping then
