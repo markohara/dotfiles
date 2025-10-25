@@ -16,3 +16,7 @@ keybind = command+k=csi:K
 
 background-opacity = 0.9
 background-blur = true
+
+# Unbind default split keybindings
+keybind = cmd+d=unbind
+keybind = cmd+shift+d=unbind
