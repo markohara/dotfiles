@@ -88,11 +88,13 @@ function obj:handleKeyPressedEvent()
 
   local n = #self.keyStrokes
   if n < 2 then return end
-  if self.keyStrokes[n-1] == self.keyStrokes[n] and (not self.keyStrokes[n]:match(self.hotkey)) then
+  if self.keyStrokes[n-1] ~= self.keyStrokes[n] or
+    self.keyStrokes[n]:match(self.hotkey) == nil then
     self.keyStrokes:flush()
     return
   end
 
+  print("triggering")
   local mapping = self.appMappings[hs.application.frontmostApplication():name()]
   if mapping then
     hs.eventtap.keyStroke(mapping.modifiers, mapping.key)
