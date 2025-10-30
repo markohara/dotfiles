@@ -35,6 +35,7 @@ return {
       vim.keymap.set('n', '<leader>fw', builtin.grep_string, { desc = 'Telescope live grep' })
       vim.keymap.set("n", "<leader>fd", builtin.find_files)
       vim.keymap.set('n', '<C-p>', builtin.git_files, {})
+      vim.keymap.set('n', '<leader>km', builtin.keymaps, {})
       vim.keymap.set("n", "<leader>en", function()
         builtin.find_files {
           cwd = vim.fn.stdpath("config")
@@ -45,7 +46,6 @@ return {
           cwd = vim.fs.joinpath(vim.fn.stdpath("data"), "lazy")
         }
       end)
-
     end
   },
 
