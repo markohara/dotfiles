@@ -32,7 +32,7 @@ obj.keyTap = nil
 
 obj.lastShiftTime = 0
 obj.hotkeyTapCount = 0
-obj.timeout = 0.075
+obj.timeout = 0.0075
 
 obj.hotkey = "shift"
 obj.appMappings = {}
@@ -51,9 +51,15 @@ obj.keyStrokes = createFixedSizeArray(10)
 
 function obj:init()
   self.modTap = hs.eventtap.new({hs.eventtap.event.types.flagsChanged}, function(event)
+    print("local flag madness")
     local flags = event:rawFlags()
+        print("Flags: " .. hs.inspect(flags))
+        print("Event type:", event:getType())
+    print("Flags:", hs.inspect(event:getFlags()))
+    print("Raw flags:", event:getRawEventData().CGEventData.flags)
+    print("---")
     for mask, name in pairs(flagMap) do
-      if flags & mask > 0 then
+      if flags & mask > 0 and flags ~= 256 then
         self.keyStrokes:add(name)
       end
     end
@@ -63,7 +69,7 @@ function obj:init()
     return false
   end)
 
-  self.keyTap = hs.eventtap.new({hs.eventtap.event.types.keyDown}, function(event)
+  self.keyTap = hs.eventtap.new({hs.eventtap.event.types.keyDown}, function()
     self.keyStrokes:flush()
     return false
   end)
@@ -80,8 +86,19 @@ function obj:register(mappings)
 end
 
 function obj:handleKeyPressedEvent()
+  -- local currentTime = os.clock()
+  -- self.hotkeyTapCount = (currentTime - self.lastShiftTime > self.timeout) and 1 or self.hotkeyTapCount + 1
+  -- self.lastShiftTime = currentTime
   local currentTime = os.clock()
-  self.hotkeyTapCount = (currentTime - self.lastShiftTime > self.timeout) and 1 or self.hotkeyTapCount + 1
+
+  -- Check if timeout has expired
+  if currentTime - self.lastShiftTime > self.timeout then
+    self.hotkeyTapCount = 1  -- Reset to 1 for this new tap
+  else
+    self.hotkeyTapCount = self.hotkeyTapCount + 1  -- Increment
+  end
+
+  print("timings", self.lastShiftTime, currentTime)
   self.lastShiftTime = currentTime
 
   if self.hotkeyTapCount == 1 then return end
