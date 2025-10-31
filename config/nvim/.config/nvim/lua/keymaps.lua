@@ -17,11 +17,17 @@ vim.keymap.set("n", "<leader>yy", [["+yy]], { desc = "Yank line to system clipbo
 -- Shortcut to open file explorer
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex, { desc = "Open file explorer" })
 
+-- Commentting <C-_> is really <C-/>
+-- Love ascii qwerk https://jvns.ca/blog/2024/10/31/ascii-control-characters/
+vim.keymap.set('n', '<C-_>', 'gcc==', { remap = true, desc = 'Toggle comment line' })
+vim.keymap.set('v', '<C-_>', 'gcgv=', { remap = true, desc = 'Toggle comment selection' })
+
 -- Go
 -- if err shortcut
 vim.keymap.set(
-    "n",
+    { "n", "i" },
     "<leader>ee",
-    "oif err != nil {<CR>}<Esc>Oreturn err<Esc>",
+    "<Esc>oif err != nil {<CR>}<Esc>Oreturn err<Esc>",
     { desc = "Insert Go error handling block" }
 )
+
