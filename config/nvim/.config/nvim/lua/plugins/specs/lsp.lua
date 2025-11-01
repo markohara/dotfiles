@@ -112,7 +112,7 @@ return {
             },
         })
 
-        -- LSP Keymaps (consolidated from init.lua)
+        -- LSP Keymaps
         local augroup = vim.api.nvim_create_augroup('LSPConfig', {})
         vim.api.nvim_create_autocmd('LspAttach', {
             group = augroup,

@@ -25,7 +25,7 @@ vim.keymap.set('v', '<C-_>', 'gcgv=', { remap = true, desc = 'Toggle comment sel
 -- Go
 -- if err shortcut
 vim.keymap.set(
-    { "n", "i" },
+    "n",
     "<leader>ee",
     "<Esc>oif err != nil {<CR>}<Esc>Oreturn err<Esc>",
     { desc = "Insert Go error handling block" }
