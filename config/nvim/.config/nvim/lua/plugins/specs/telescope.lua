@@ -38,7 +38,14 @@ return {
     local builtin = require('telescope.builtin')
 
     vim.keymap.set('n', '<leader>pf', builtin.find_files, { desc = 'Find files in project' })
-    vim.keymap.set('n', '<C-p>', builtin.git_files, { desc = 'Find git tracked files' })
+    -- vim.keymap.set('n', '<C-p>', builtin.git_files, { desc = 'Find git tracked files' })
+    vim.keymap.set('n', '<C-p>', function()
+      local ok = pcall(builtin.git_files)
+      if not ok then
+        builtin.find_files()
+      end
+    end, { desc = 'Find git tracked files or all files' })
+
     vim.keymap.set('n', '<leader>vh', builtin.help_tags, { desc = 'Search vim help tags' })
     vim.keymap.set('n', '<leader>km', builtin.keymaps, { desc = 'Telescope keymaps' })
     vim.keymap.set('n', '<leader>pws', function()
