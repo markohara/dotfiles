@@ -13,3 +13,7 @@ alias gp="git pull"
 alias gP="git push"
 alias gd="git diff"
 alias gl="git log"
+alias gda="git diff --staged"
+
+# NVIM
+alias v="nvim"
