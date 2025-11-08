@@ -3,6 +3,10 @@
 theme = "Catppuccin Mocha"
 
 font-size = 20
+# Disable all ligatures
+font-feature = -calt
+font-feature = -dlig
+font-feature = -liga
 
 macos-option-as-alt = false
 mouse-shift-capture = false
