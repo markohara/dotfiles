@@ -10,9 +10,8 @@ vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv", { desc = "Move lines up (auto-inden
 vim.keymap.set("n", "J", "mzJ`z", { desc = "Join lines and keep cursor position" })
 
 -- Yank to system clipboard
-vim.keymap.set("v", "<leader>y", [["+y]], { desc = "Yank selection to system clipboard" })
-vim.keymap.set("n", "<leader>Y", [["+Y]], { desc = "Yank to end of line to system clipboard" })
-vim.keymap.set("n", "<leader>yy", [["+yy]], { desc = "Yank line to system clipboard" })
+vim.keymap.set({'n', 'v'}, '<leader>y', '"+y', { desc = 'Yank to system clipboard' })
+vim.keymap.set('n', '<leader>Y', '"+Y', { desc = 'Yank line to system clipboard' })
 
 -- Shortcut to open file explorer
 vim.keymap.set("n", "<leader>pv", vim.cmd.Ex, { desc = "Open file explorer" })
