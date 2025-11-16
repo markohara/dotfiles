@@ -1,27 +1,61 @@
 #!/bin/bash
 # Originally stolen from here https://github.com/ThePrimeagen/.dotfiles/blob/master/bin/.local/scripts/tmux-sessionizer
+# Use -s or --sessions flag to show only existing sessions
 
-if [[ $# -eq 1 ]]; then
-    selected=$1
-else
-    dirs_to_search=${SESSIONIZER_DIRS:+"$(echo "$SESSIONIZER_DIRS" | tr ':' ' ')"}
+sessions_only=false
 
-    selected=$(
-        {
-            [[ -n "$dirs_to_search" ]] && find $dirs_to_search -mindepth 1 -maxdepth 1 -type d 2>/dev/null
-            [[ -n "$SESSIONIZER_PROJECTS" ]] && echo "$SESSIONIZER_PROJECTS" | tr ':' '\n'
-        } | fzf --tmux center --with-nth -1 -d '/'
-    )
+# Parse flags
+while [[ $# -gt 0 ]]; do
+    case $1 in
+        -s|--sessions)
+            sessions_only=true
+            shift
+            ;;
+        *)
+            # If it's not a flag, treat it as a directory argument
+            selected=$1
+            shift
+            ;;
+    esac
+done
+
+# If no directory was provided as argument, use fzf to select
+if [[ -z $selected ]]; then
+    if [[ $sessions_only == true ]]; then
+        # Show only existing sessions
+        sessions=$(tmux list-sessions -F "#{session_name}" 2>/dev/null)
+        
+        if [[ -z $sessions ]]; then
+            echo "No tmux sessions found"
+            exit 1
+        fi
+        
+        selected=$(echo "$sessions" | fzf --tmux center)
+    else
+        # search directories
+        dirs_to_search=${SESSIONIZER_DIRS:+"$(echo "$SESSIONIZER_DIRS" | tr ':' ' ')"}
+
+        selected=$(
+            {
+                [[ -n "$dirs_to_search" ]] && find $dirs_to_search -mindepth 1 -maxdepth 1 -type d 2>/dev/null
+                [[ -n "$SESSIONIZER_PROJECTS" ]] && echo "$SESSIONIZER_PROJECTS" | tr ':' '\n'
+            } | fzf --tmux center --with-nth -1 -d '/'
+        )
+    fi
 fi
 
 if [[ -z $selected ]]; then
     exit 0
 fi
 
-selected_name=$(basename "$selected" | tr . _)
+# If we selected an existing session, use it directly
+if [[ $sessions_only == true ]]; then
+    selected_name=$selected
+else
+    selected_name=$(basename "$selected" | tr . _)
+fi
 
 if [[ -z $TMUX ]]; then
-    # Tmux is running, check if the session exists
     if tmux has-session -t=$selected_name 2> /dev/null; then
         # Session exists, attach to it
         tmux attach-session -t $selected_name
