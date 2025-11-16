@@ -82,38 +82,11 @@ return {
     end, { desc = 'Search config files' })
   
     vim.keymap.set('n', '<leader>ss', function()
-      builtin.spell_suggest()
+      builtin.spell_suggest({
+        initial_mode = "normal"
+      })
     end, { desc = 'Spelling suggestions' })
 
-    -- Spell checking keymaps
-    vim.keymap.set("n", "]s", function()
-      vim.cmd("normal! ]s")
-    end, { desc = "Next spelling error" })
-
-    vim.keymap.set("n", "[s", function()
-      vim.cmd("normal! [s")
-    end, { desc = "Previous spelling error" })
-
-    vim.keymap.set("n", "zg", function()
-      vim.cmd("normal! zg")
-    end, { desc = "Add word to spellfile" })
-
-    vim.keymap.set("n", "zw", function()
-      vim.cmd("normal! zw")
-    end, { desc = "Mark word as wrong" })
-
-    vim.keymap.set("n", "zug", function()
-      vim.cmd("normal! zug")
-    end, { desc = "Undo add word" })
-
-    vim.keymap.set("n", "z=", function()
-      builtin.spell_suggest()
-    end, { desc = "Spelling suggestions" })
-
-    -- Toggle spell checking
-    vim.keymap.set("n", "<leader>us", function()
-      vim.opt.spell = not vim.opt.spell:get()
-    end, { desc = "Toggle spell check" })
   end
 }
 
