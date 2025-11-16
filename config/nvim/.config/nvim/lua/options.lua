@@ -28,3 +28,6 @@ opt.incsearch = true
 -- Files
 opt.swapfile = false
 opt.backup = false
+
+opt.spell = true
+opt.spelllang = "en_us"
