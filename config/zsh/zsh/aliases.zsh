@@ -14,6 +14,7 @@ alias gP="git push"
 alias gd="git diff"
 alias gl="git log"
 alias gda="git diff --staged"
+alias lg="lazygit"
 
 # NVIM
 alias v="nvim"
