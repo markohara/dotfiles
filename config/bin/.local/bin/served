@@ -1,8 +1,8 @@
 #!/bin/bash
 set -e
 
-ACTIONS=("start" "stop" "restart" "k€#¢ill")
-SERVICES=("sketchybar")
+ACTIONS=("start" "stop" "restart" "kill")
+SERVICES=("sketchybar" "borders")
 
 service=$(gum choose --header "Services" "${SERVICES[@]}")
 action=$(gum choose --header "Actions" "${ACTIONS[@]}")
