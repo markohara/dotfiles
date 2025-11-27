@@ -13,8 +13,7 @@ after-login-command = []
 # 'after-startup-command' is run after 'after-login-command'
 # Available commands : https://nikitabobko.github.io/AeroSpace/commands
 after-startup-command = [
-  'exec-and-forget sketchybar',
-  'exec-and-forget borders'
+    'exec-and-forget brew services restart sketchybar',
 ]
 
 # Notify Sketchybar about workspace change
@@ -65,7 +64,7 @@ inner.horizontal = 10
 inner.vertical =   10
 outer.left =       10
 outer.bottom =     10
-outer.top =        10
+outer.top =        [{ monitor."Studio Display" = 40 }, 10]
 outer.right =      10
 
 # inner.horizontal = 5
