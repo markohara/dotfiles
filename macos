@@ -18,10 +18,4 @@ export DOTFILES CONFIG UTILS STOW_FOLDERS_FILE BACKUP_FILES_FILE DOTFILES DOTFIL
 $UTILS/backup
 $UTILS/install
 
-# Need a better spot of this too
-if [[ $(defaults read -g ApplePressAndHoldEnabled 2>/dev/null) != 0 ]]; then
-    defaults write -g ApplePressAndHoldEnabled -bool false
-    echo "Restart required to apply changes."
-fi
-
 ~/.tmux/plugins/tpm/bin/install_plugins
