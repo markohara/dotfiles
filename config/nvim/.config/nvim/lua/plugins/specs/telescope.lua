@@ -39,12 +39,18 @@ return {
 
     vim.keymap.set('n', '<leader>pf', builtin.find_files, { desc = 'Find files in project' })
     -- vim.keymap.set('n', '<C-p>', builtin.git_files, { desc = 'Find git tracked files' })
+
     vim.keymap.set('n', '<C-p>', function()
-      local ok = pcall(builtin.git_files)
+      local ok = pcall(builtin.git_files, {
+        path_display = { "smart" },
+      })
       if not ok then
-        builtin.find_files()
+        builtin.find_files({
+          path_display = { "smart" },
+        })
       end
     end, { desc = 'Find git tracked files or all files' })
+
 
     vim.keymap.set('n', '<leader>vh', builtin.help_tags, { desc = 'Search vim help tags' })
     vim.keymap.set('n', '<leader>km', builtin.keymaps, { desc = 'Telescope keymaps' })
