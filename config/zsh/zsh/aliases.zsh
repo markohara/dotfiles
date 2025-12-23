@@ -5,6 +5,7 @@ alias commit="commitizen"
 alias sesh="tmux-sessionizer"
 
 # Git
+alias gco="git checkout"
 alias gs="git status"
 alias ga="git add"
 alias gc="git commit -am"
