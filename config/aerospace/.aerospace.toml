@@ -145,6 +145,7 @@ alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'
 alt-shift-semicolon = 'mode service'
 
 alt-shift-r = 'mode resize'
+alt-shift-quote = 'layout floating tiling'
 
 [mode.resize.binding]
 h = 'resize width -50'
