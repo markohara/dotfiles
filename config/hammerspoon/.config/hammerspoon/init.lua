@@ -17,6 +17,7 @@ shiftIt:register(
     {
         Xcode = {modifiers = {"cmd", "shift"}, key = "o"},
         Cursor = {modifiers = {"cmd"}, key = "p"},
+        Code = {modifiers = {"cmd"}, key = "p"},
         ["Microsoft Teams"] = {modifiers = {"cmd"}, key = "e"}
     }
 )
@@ -32,3 +33,13 @@ shiftIt:register(
 --     print("No focused window")
 --   end
 -- end)
+
+hs.hotkey.bind({"cmd", "alt"}, "w", function()
+  local win = hs.window.focusedWindow()
+  if win then
+    hs.alert.show("Window: " .. win:title() .. "\nApp: " .. win:application():name())
+  else
+    hs.alert.show("No focused window")
+  end
+end)
+
